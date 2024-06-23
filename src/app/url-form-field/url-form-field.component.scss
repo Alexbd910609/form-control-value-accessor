@@ -1,0 +1,16 @@
+form {
+  width: 90vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+
+  .method-select {
+    width: 10%;
+  }
+
+  .url-input {
+    width: 90%;
+  }
+}

@@ -1,0 +1,23 @@
+<form [formGroup]="urlForm">
+  <mat-form-field appearance="outline" color="accent" class="method-select">
+    <mat-label>Url Method</mat-label>
+    <mat-select formControlName="method">
+      @for (method of methods; track method) {
+        <mat-option [value]="method.value">{{ method.viewValue }}</mat-option>
+      }
+    </mat-select>
+
+    @if (urlForm.controls['method'].hasError('required')) {
+      <mat-error>Url Method is Required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" color="accent" class="url-input">
+    <mat-label>Url</mat-label>
+    <input matInput placeholder="Url" formControlName="url">
+
+    @if (urlForm.controls['url'].hasError('required')) {
+      <mat-error>Url is Required</mat-error>
+    }
+  </mat-form-field>
+</form>
