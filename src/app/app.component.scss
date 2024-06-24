@@ -10,4 +10,10 @@ form {
   .name-input {
     width: 100%;
   }
+
+  .button-group {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
 }

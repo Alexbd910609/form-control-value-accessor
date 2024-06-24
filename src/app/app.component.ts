@@ -6,6 +6,7 @@ import {MatInput} from "@angular/material/input";
 import {UrlFormFieldComponent} from "./url-form-field/url-form-field.component";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {MatButton} from "@angular/material/button";
+import {Website} from "./core/interfaces/website/website.interface";
 
 @Component({
   selector: 'app-root',
@@ -17,19 +18,28 @@ import {MatButton} from "@angular/material/button";
 })
 export class AppComponent implements OnInit {
   private _destroyRef: DestroyRef = inject(DestroyRef);
-  // private _defaultData: Website = {
-  //   name: 'Default Name',
-  //   siteUrl: {
-  //     method: 'https',
-  //     url: 'default-url.com'
-  //   }
-  // }
+  private _defaultData: Website = {
+    name: 'Default Name',
+    siteUrl: {
+      method: 'https',
+      url: 'default-url.com'
+    }
+  }
 
   public invalidForm: boolean = false;
   public webSiteForm: UntypedFormGroup = new UntypedFormGroup({
     name: new UntypedFormControl({value: '', disabled: false}, [Validators.required]),
     siteUrl: new UntypedFormControl({value: '', disabled: false})
   });
+
+  private _getDefaultData() {
+    this.webSiteForm.patchValue(this._defaultData);
+  }
+
+  public populateForm(): void {
+    this._getDefaultData();
+
+  }
 
   public showAlert(): void {
     if (this.webSiteForm.invalid) {
@@ -43,13 +53,7 @@ export class AppComponent implements OnInit {
     );
   }
 
-  // private _getDefaultData() {
-  //   this.webSiteForm.patchValue(this._defaultData);
-  // }
-
   ngOnInit(): void {
-    // this._getDefaultData();
-
     this.webSiteForm.valueChanges
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({

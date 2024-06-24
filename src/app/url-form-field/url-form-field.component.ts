@@ -54,12 +54,12 @@ export class UrlFormFieldComponent implements ControlValueAccessor, OnInit, Vali
     }
   }
 
-  // private _initForm(data: SiteUrl): void {
-  //   this.urlForm.patchValue({
-  //     method: data?.method,
-  //     url: data?.url
-  //   });
-  // }
+  private _initForm(data: SiteUrl): void {
+    this.urlForm.patchValue({
+      method: data?.method,
+      url: data?.url
+    });
+  }
 
   private _propagateValue(): void {
     this.urlForm.valueChanges
@@ -80,9 +80,9 @@ export class UrlFormFieldComponent implements ControlValueAccessor, OnInit, Vali
   }
 
   writeValue(formValue: SiteUrl): void {
-    // if (formValue) {
-    //   this._initForm(formValue);
-    // }
+    if (formValue) {
+      this._initForm(formValue);
+    }
   }
 
   registerOnTouched(): void {
